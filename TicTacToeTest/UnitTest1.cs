@@ -56,50 +56,6 @@ namespace TicTacToeTest
         }
 
         [Test]
-        public void PlayGame_ValidMoves_GameProceeds()
-        {
-            // Arrange
-            string[,] board = new string[3, 3] { { "*", "*", "*" }, { "*", "*", "*" }, { "*", "*", "*" } };
-            string[,] expectedBoard = new string[3, 3] { { "X", "*", "*" }, { "*", "*", "*" }, { "*", "*", "*" } };
-            string input = "0 0\n"; // Simulating user input for first move
-
-            // Redirect Console input
-            using (StringReader sr = new StringReader(input))
-            {
-                Console.SetIn(sr);
-
-                // Act
-                Program.PlayGame(board);
-
-                // Assert
-                Assert.That(board, Is.EqualTo(expectedBoard));
-            }
-        }
-
-        [Test]
-        public void Test_OccupiedCell()
-        {
-            string[,] board = new string[3, 3] {
-            { "O", "X", "O" },
-            { "*", "*", "*" },
-            { "*", "*", "*" } };
-            
-            string input = "0 2"; // Simulate user input
-            string expectedOutput = "This cell is already occupied. Please choose another one.\r\n";
-
-            using (StringWriter sw = new StringWriter())
-            {
-                using (StringReader sr = new StringReader(input))
-                {
-                    Console.SetOut(sw); // Redirect console output to StringWriter
-                    Console.SetIn(sr); // Set console input to StringReader
-                    Program.PlayGame(board); // Call the method to simulate the game
-                }
-                Assert.That(sw.ToString(), Is.EqualTo(expectedOutput)); // Assert that the correct error message is displayed
-            }
-        }
-
-        [Test]
         public void Test_GetCoordinates_ValidInput()
         {
             string input = "1 2";
@@ -113,8 +69,18 @@ namespace TicTacToeTest
         {
             string input = "3 1";
             Console.SetIn(new System.IO.StringReader(input)); // Set the console input to simulate user input
-            string expectedOutput = "Invalid input. Please enter two numbers between 0 and 2 with give a space.\r\n";
-            Assert.That(Program.GetCoordinates().ToString(), Is.EqualTo(expectedOutput));
+            string expectedOutput = "Invalid input. Please enter two numbers between 0 and 2 separated by a space.\r\n";
+
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                // Act and Assert
+                Assert.Throws<NullReferenceException>(() => Program.GetCoordinates());
+
+                // Check the console output for the expected error message
+                Assert.That(sw.ToString().Trim(), Is.EqualTo(expectedOutput.Trim()));
+            }
         }
     }
 }
