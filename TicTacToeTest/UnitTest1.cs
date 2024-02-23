@@ -81,16 +81,14 @@ namespace TicTacToeTest
             Console.SetIn(new StringReader(input)); // Set the console input to simulate user input
             string expectedOutput = "Invalid input. Please enter two numbers between 0 and 2 separated by a space.\r\n";
 
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+            StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
 
-                // Act and Assert
-                Assert.Throws<NullReferenceException>(() => Program.GetCoordinates());
+            // Act and Assert
+            Assert.Throws<NullReferenceException>(() => Program.GetCoordinates());
 
-                // Check the console output for the expected error message
-                Assert.That(sw.ToString().Trim(), Is.EqualTo(expectedOutput.Trim()));
-            }
+            // Check the console output for the expected error message
+            Assert.That(sw.ToString().Trim(), Is.EqualTo(expectedOutput.Trim()));
         }
 
         [Test]
@@ -103,31 +101,24 @@ namespace TicTacToeTest
 
             string input = "0 0"; // Simulate user input
 
-            // Redirect Console input
-            using (StringReader sr = new StringReader(input))
-            {
-                Console.SetIn(sr);
+            StringReader sr = new StringReader(input);
+            Console.SetIn(sr);
 
-                // Redirect Console output
-                using (StringWriter sw = new StringWriter())
-                {
-                    Console.SetOut(sw);
+            StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+            // Act and Assert
+            Assert.Throws<NullReferenceException>(() => Program.PlayGame(board));
 
-                    // Act and Assert
-                    Assert.Throws<NullReferenceException>(() => Program.PlayGame(board));
+            // Check the console output for the expected error message
+            string actualOutput = sw.ToString();
+            string expectedOccupiedErrorMessage = "This cell is already occupied. Please choose another one.";
 
-                    // Check the console output for the expected error message
-                    string actualOutput = sw.ToString();
-                    string expectedOccupiedErrorMessage = "This cell is already occupied. Please choose another one.";
+            // Extract the relevant part of the actual output
+            int startIndex = actualOutput.IndexOf(expectedOccupiedErrorMessage);
+            string actualOccupiedErrorMessage = actualOutput.Substring(startIndex, expectedOccupiedErrorMessage.Length);
 
-                    // Extract the relevant part of the actual output
-                    int startIndex = actualOutput.IndexOf(expectedOccupiedErrorMessage);
-                    string actualOccupiedErrorMessage = actualOutput.Substring(startIndex, expectedOccupiedErrorMessage.Length);
-
-                    // Assert that the extracted part matches the expected part
-                    Assert.That(actualOccupiedErrorMessage, Is.EqualTo(expectedOccupiedErrorMessage));
-                }
-            }
+            // Assert that the extracted part matches the expected part
+            Assert.That(actualOccupiedErrorMessage, Is.EqualTo(expectedOccupiedErrorMessage));
         }
     }
 }
