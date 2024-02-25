@@ -17,7 +17,7 @@ This is a simple console-based Tic Tac Toe game implemented in C# using .NetFram
 - `GetCoordinates`: This method is responsible for reading user input to determine the cell where the current player wants to place their symbol. It prompts the user to input row and column numbers separated by a space, validates the input to ensure it corresponds to a valid cell on the board, and returns the coordinates of the selected cell.
 - `CheckForWinner`: This method checks if a player has won the game.
 
-###Test Cases:
+### Test Cases:
 I have covered various scenarios, including winning conditions, draw conditions, player turns, user input handling, and error handling to ensure the correctness and robustness of the Tic Tac Toe game implementation. Here's a summary of the scenarios covered:
 
 1. `Winning Scenarios:` 
