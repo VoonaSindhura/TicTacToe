@@ -28,7 +28,7 @@
 
             for (int i = 0; i < 9; i++)
             {
-                Console.WriteLine($"\nPlayer {playerTurn}, please enter row and column numbers with give a space (e.g., '0 1'): ");
+                Console.WriteLine($"\nPlayer {playerTurn}, please enter row and column numbers with a space in between(e.g., '0 1'): ");
                 Tuple<int, int> coordinates = GetCoordinates();
                 int rowIndex = coordinates.Item1;
                 int columnIndex = coordinates.Item2;
