@@ -41,6 +41,12 @@
 
                     CheckforWinner(board, playerTurn);
 
+                    if(i == 8) // All moves have been made
+            {
+                        Console.WriteLine("It's a draw!");
+                        return; // End the game
+                    }
+
                     playerTurn = (playerTurn == 1) ? 2 : 1;
                 }
                 else

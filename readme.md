@@ -1,6 +1,6 @@
 ## Tic Tac Toe Game
 
-This is a simple console-based Tic Tac Toe game implemented in C#. 
+This is a simple console-based Tic Tac Toe game implemented in C# using .NetFramework 8. 
 
 ### Gameplay Instructions
 
@@ -11,15 +11,11 @@ This is a simple console-based Tic Tac Toe game implemented in C#.
 
 ### Code Structure
 
-- `Program. cs`: The application and contains the main game logic. It organizes the flow of the game, including initializing the game board, managing player turns, receiving user input, updating the board, and checking for a winner.
+- `Program. cs`: The application contains the main game logic. It organizes the flow of the game, including initializing the game board, managing player turns, receiving user input, updating the board, and checking for a winner.
 - `InitializeBoard`: The InitializeBoard method is responsible for setting up the game board at the beginning of each game.
 - `PlayGame`: This method manages the game loop, where players take turns placing their symbols on the board until the game is over. 
 - `GetCoordinates`: This method is responsible for reading user input to determine the cell where the current player wants to place their symbol. It prompts the user to input row and column numbers separated by a space, validates the input to ensure it corresponds to a valid cell on the board, and returns the coordinates of the selected cell.
 - `CheckForWinner`: This method checks if a player has won the game.
-
-Notes
-This program is developed using .NET Framework 8.
-It is a console application, meaning it operates via command-line input and output.
 
 ## Running the Program:
 
@@ -35,21 +31,27 @@ It is a console application, meaning it operates via command-line input and outp
 
 6. Build and Run the Project by selecting "Build" > "Build Solution" from the menu. To run the project, you can press F5 to start debugging.
 
-7. The program will display the initial state of the TicTacToe game, Player 1 represents an "X" and player 2 represents an "O".
+7. The program will display the initial state of the TicTacToe game.
+
+8. When the console board appears, please enter the row number followed by the column number, separated by a space. For example, to place your symbol in the top-right corner, enter '0 2'.
+9.  Player 1 represents an "X" and player 2 represents an "O".
 
 
 Example Output:
 
 ~~~~ 
 Initial Board
- * * *
- * * *
- * * *
+
+     col0 col1 col2
+row0:  *    *    *
+row1:  *    *    *
+row2:  *    *    *
 
 After the game starts it will be like this
-Player 1 is 'X' and Player 2 is 'O'
 
  X O X
  X O O
  O X X
 ~~~~ 
+
+
